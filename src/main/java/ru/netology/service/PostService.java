@@ -25,16 +25,16 @@ public class PostService {
 
     public Post getById(long id) {
         return repository.getById(id)
-                .orElseThrow(NotFoundException::new);
+                .orElseThrow(() -> new NotFoundException("The post with this ID was not found"));
     }
 
     public Post save(Post post) {
-
-        return repository.save(post);
+        return repository.save(post).orElseThrow(() -> new NotFoundException("this Post was not saved"));
     }
 
     public void removeById(long id) {
-
-        repository.removeById(id);
+        if (!repository.removeById(id)) {
+            throw new NotFoundException("The post with the " + id + " was not deleted");
+        }
     }
 }

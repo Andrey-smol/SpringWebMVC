@@ -10,13 +10,14 @@ import java.nio.file.Files;
 public class ServerTomcatInit {
     private static final String BASE_DIRECTORY = "tomcat";
     private static final int PORT_CONNECTION = 9999;
+
     public static void init() throws IOException, LifecycleException {
         final var tomcat = new Tomcat();
         final var baseDir = Files.createTempDirectory(BASE_DIRECTORY);
         baseDir.toFile().deleteOnExit();
         tomcat.setBaseDir(baseDir.toAbsolutePath().toString());
 
-        final  var connector = new Connector();
+        final var connector = new Connector();
         connector.setPort(PORT_CONNECTION);
         tomcat.setConnector(connector);
 
