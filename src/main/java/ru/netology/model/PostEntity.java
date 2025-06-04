@@ -2,16 +2,25 @@ package ru.netology.model;
 
 import java.util.Objects;
 
-public class Post {
+public class PostEntity {
     private long id;
     private String content;
+    private boolean removed = false;
 
-    public Post() {
+    public PostEntity() {
     }
 
-    public Post(long id, String content) {
+    public PostEntity(long id, String content) {
         this.id = id;
         this.content = content;
+    }
+
+    public boolean isRemoved() {
+        return removed;
+    }
+
+    public void setRemoved(boolean removed) {
+        this.removed = removed;
     }
 
     public long getId() {
@@ -38,12 +47,12 @@ public class Post {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        Post post = (Post) o;
-        return id == post.id && Objects.equals(content, post.content);
+        PostEntity post = (PostEntity) o;
+        return id == post.id && removed == post.removed && Objects.equals(content, post.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, content);
+        return Objects.hash(id, removed, content);
     }
 }
