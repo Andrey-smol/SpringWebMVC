@@ -13,10 +13,12 @@ build/
 
 ### IntelliJ IDEA ###
 .idea
+.mvn
 *.iws
 *.iml
 *.ipr
 out/
+target/
 
 ### Android Studio ###
 local.properties
